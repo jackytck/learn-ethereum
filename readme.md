@@ -21,7 +21,7 @@ geth --datadir=./datadir account list
 ## compiling
 ```bash
 yarn global add solc
-solc --bin --abi counter.sol
+solcjs --bin --abi counter.sol
 ```
 
 ## deploying
@@ -58,6 +58,30 @@ txpool.status
 # mine: start, stop
 miner.start()
 miner.stop()
+
+# parse abi (cat counter_sol_Counter.abi | pbcopy)
+var abi = JSON.parse('XXXXX')
+
+# JS Class wrapper of contract
+var Counter = eth.contract(abi)
+
+# instance of Counter from given address
+var counter = Counter.at(contractAddr)
+
+# read is free
+counter.get()
+
+# write costs ether
+counter.increment.sendTransaction({ from: eth.accounts[0] })
+
+miner.start()
+miner.stop()
+
+# debug transaction
+debug.traceTransaction(txid)
+eth.getTransaction(txid)
+eth.getTransactionReceipt(txid)
+
 ```
 
 
