@@ -84,6 +84,10 @@ eth.getTransactionReceipt(txid)
 
 ```
 
+## rpc mode
+``` bash
+geth --datadir=./datadir --nodiscover --rpc --rpcapi 'db,personal,eth,net,web3' --rpccorsdomain='*' --rpcaddr='localhost' --rpcport 8545 console
+```
 
 #### Notes
 * Account is created offline.
